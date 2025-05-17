@@ -22,7 +22,7 @@ use App\Http\Controllers\ProductRecommendationController;
 // Member routes
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/members/register', [MemberController::class, 'register']);
-    Route::post('/members/fcm-token', [MemberController::class, 'updateFcmToken']);
+    Route::post('/members/fcm-token', [App\Http\Controllers\Api\FCMController::class, 'updateToken']);
     Route::get('/members/team-structure', [MemberController::class, 'getTeamStructure']);
 });
 
