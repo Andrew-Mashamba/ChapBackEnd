@@ -20,22 +20,16 @@ use App\Http\Controllers\ProductRecommendationController;
 */
 
 // Member routes
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/members/register', [MemberController::class, 'register']);
-    Route::post('/members/fcm-token', [App\Http\Controllers\Api\FCMController::class, 'updateToken']);
-    Route::get('/members/team-structure', [MemberController::class, 'getTeamStructure']);
-});
+Route::post('/members/register', [MemberController::class, 'register']);
+Route::post('/members/fcm-token', [App\Http\Controllers\Api\FCMController::class, 'updateToken']);
+Route::get('/members/team-structure', [MemberController::class, 'getTeamStructure']);
 
 // Commission routes
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/commissions/calculate', [CommissionController::class, 'calculateCommissions']);
-    Route::get('/commissions/history', [CommissionController::class, 'getCommissionHistory']);
-});
+Route::post('/commissions/calculate', [CommissionController::class, 'calculateCommissions']);
+Route::get('/commissions/history', [CommissionController::class, 'getCommissionHistory']);
 
 // Order routes
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/orders/complete', [OrderController::class, 'completeOrder']);
-});
+Route::post('/orders/complete', [OrderController::class, 'completeOrder']);
 
 // Product View Routes
 Route::prefix('products')->group(function () {
@@ -46,25 +40,12 @@ Route::prefix('products')->group(function () {
 });
 
 // Product recommendation routes
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/products/recommendations', [ProductRecommendationController::class, 'getPersonalizedRecommendations']);
-    Route::get('/products/trending', [ProductRecommendationController::class, 'getTrendingProducts']);
-    Route::get('/products/category/{categoryId}/popular', [ProductRecommendationController::class, 'getPopularProductsByCategory']);
-    Route::get('/products/{productId}/similar', [ProductRecommendationController::class, 'getSimilarProducts']);
-});
+Route::get('/products/recommendations', [ProductRecommendationController::class, 'getPersonalizedRecommendations']);
+Route::get('/products/trending', [ProductRecommendationController::class, 'getTrendingProducts']);
+Route::get('/products/category/{categoryId}/popular', [ProductRecommendationController::class, 'getPopularProductsByCategory']);
+Route::get('/products/{productId}/similar', [ProductRecommendationController::class, 'getSimilarProducts']);
 
 // Auth routes
-//Route::prefix('auth')->group(function () {
-    Route::post('/check-phone', [App\Http\Controllers\Api\AuthController::class, 'checkPhone']);
-//});
-
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_middleware')
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+Route::post('/check-phone', [App\Http\Controllers\Api\AuthController::class, 'checkPhone']);
 
 require __DIR__.'/auth.php';
