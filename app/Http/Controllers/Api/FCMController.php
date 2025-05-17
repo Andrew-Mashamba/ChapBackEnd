@@ -20,10 +20,11 @@ class FCMController extends Controller
     {
         $request->validate([
             'fcm_token' => 'required|string',
+            'member_id' => 'required|integer|exists:members,id',
         ]);
 
         try {
-            $member = $request->user();
+            $member = \App\Models\Member::findOrFail($request->member_id);
             $member->update([
                 'fcm_token' => $request->fcm_token,
             ]);
@@ -39,7 +40,7 @@ class FCMController extends Controller
         } catch (\Exception $e) {
             Log::error('Failed to update FCM token', [
                 'error' => $e->getMessage(),
-                'member_id' => $request->user()->id,
+                'member_id' => $request->member_id,
             ]);
 
             return response()->json([
@@ -121,4 +122,4 @@ class FCMController extends Controller
             ], 500);
         }
     }
-} 
+}
