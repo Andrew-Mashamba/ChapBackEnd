@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('members', function (Blueprint $table) {
-            $table->string('fcm_token')->nullable()->after('api_token');
+            $table->string('fcm_token')->nullable();
         });
     }
 
@@ -25,4 +25,4 @@ return new class extends Migration
             $table->dropColumn('fcm_token');
         });
     }
-}; 
+};

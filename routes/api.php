@@ -53,6 +53,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/products/{productId}/similar', [ProductRecommendationController::class, 'getSimilarProducts']);
 });
 
+// Auth routes
+//Route::prefix('auth')->group(function () {
+    Route::post('/check-phone', [App\Http\Controllers\Api\AuthController::class, 'checkPhone']);
+//});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_middleware')
@@ -62,4 +67,4 @@ Route::middleware([
     })->name('dashboard');
 });
 
-require __DIR__.'/auth.php'; 
+require __DIR__.'/auth.php';
