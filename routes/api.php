@@ -48,4 +48,4 @@ Route::get('/products/{productId}/similar', [ProductRecommendationController::cl
 // Auth routes
 Route::post('/check-phone', [App\Http\Controllers\Api\AuthController::class, 'checkPhone']);
 
-require __DIR__.'/auth.php';
+

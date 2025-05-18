@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use Kreait\Firebase\Factory;
+use Kreait\Laravel\Firebase\Facades\Firebase;
 use Kreait\Firebase\Messaging\CloudMessage;
 use Kreait\Firebase\Messaging\Notification;
 use Kreait\Firebase\Exception\MessagingException;
@@ -14,10 +14,7 @@ class FCMService
 
     public function __construct()
     {
-        $factory = (new Factory)
-            ->withServiceAccount(storage_path('firebase-credentials.json'));
-
-        $this->messaging = $factory->createMessaging();
+        $this->messaging = Firebase::messaging();
     }
 
     /**
@@ -217,4 +214,4 @@ class FCMService
 
         return $this->sendToDevice($token, $title, $body, $data);
     }
-} 
+}
