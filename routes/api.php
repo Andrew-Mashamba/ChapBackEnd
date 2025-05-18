@@ -2,22 +2,22 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductViewController;
 use App\Http\Controllers\ProductRecommendationController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
+
+//require __DIR__.'/auth.php';
+
+Route::get('/xx', function () {
+    return "jgjhgjhgh";
+});
+
+
 
 // Member routes
 Route::post('/members/register', [MemberController::class, 'register']);
@@ -47,5 +47,3 @@ Route::get('/products/{productId}/similar', [ProductRecommendationController::cl
 
 // Auth routes
 Route::post('/check-phone', [App\Http\Controllers\Api\AuthController::class, 'checkPhone']);
-
-
