@@ -2,6 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Http\Request;
+
+
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -15,3 +21,13 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+
+Route::get('/check-phone', function () {
+    return view('welcome');
+});
+
+Route::middleware('api')
+            ->prefix('api') 
+            ->group(base_path('routes/api.php'));
+
