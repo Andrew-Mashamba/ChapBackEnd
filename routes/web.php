@@ -27,7 +27,3 @@ Route::get('/check-phone', function () {
     return view('welcome');
 });
 
-Route::middleware('api')
-            ->prefix('api') 
-            ->group(base_path('routes/api.php'));
-
